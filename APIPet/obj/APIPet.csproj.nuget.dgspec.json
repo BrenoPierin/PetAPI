@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Breno USA\\Senai 2 Semestre\\APIPet\\APIPet\\APIPet.csproj": {}
+    "C:\\Breno USA\\Senai 2 Semestre\\APIPet\\PetAPI\\APIPet\\APIPet.csproj": {}
   },
   "projects": {
-    "C:\\Breno USA\\Senai 2 Semestre\\APIPet\\APIPet\\APIPet.csproj": {
+    "C:\\Breno USA\\Senai 2 Semestre\\APIPet\\PetAPI\\APIPet\\APIPet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Breno USA\\Senai 2 Semestre\\APIPet\\APIPet\\APIPet.csproj",
+        "projectUniqueName": "C:\\Breno USA\\Senai 2 Semestre\\APIPet\\PetAPI\\APIPet\\APIPet.csproj",
         "projectName": "APIPet",
-        "projectPath": "C:\\Breno USA\\Senai 2 Semestre\\APIPet\\APIPet\\APIPet.csproj",
+        "projectPath": "C:\\Breno USA\\Senai 2 Semestre\\APIPet\\PetAPI\\APIPet\\APIPet.csproj",
         "packagesPath": "C:\\Users\\Masseria\\.nuget\\packages\\",
-        "outputPath": "C:\\Breno USA\\Senai 2 Semestre\\APIPet\\APIPet\\obj\\",
+        "outputPath": "C:\\Breno USA\\Senai 2 Semestre\\APIPet\\PetAPI\\APIPet\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Masseria\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -37,6 +37,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

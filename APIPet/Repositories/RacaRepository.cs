@@ -9,22 +9,21 @@ using System.Threading.Tasks;
 
 namespace APIPet.Repositories
 {
-    public class TipoPetRepository : ITipoPet
+    public class RacaRepository : IRaca
     {
-        TipoPetContext conexao = new TipoPetContext();
+        RacaContext conexao = new RacaContext();
 
+        // 2 - Chamamos nosso objeto que dará os comandos SQL
         SqlCommand cmd = new SqlCommand();
-        public TipoPet Alterar(int id, TipoPet pet)
+        public Raca Alterar(int id, Raca pet)
         {
             cmd.Connection = conexao.Conectar();
-            cmd.CommandText = "UPDATE TipoPet SET " +
-                "Descricao = @Descricao," +
-                "DataDeNascimento = @DataDeNascimento WHERE IdTipoPet = @id";
+            cmd.CommandText = "UPDATE Raca SET " +
+                "Descricao = @Descricao WHERE IdRaca = @id";
 
             cmd.Parameters.AddWithValue("id", id);
 
             cmd.Parameters.AddWithValue("@Descricao", pet.Descricao);
-            cmd.Parameters.AddWithValue("@DataDeNascimento", pet.DataDeNascimento);
 
             cmd.ExecuteNonQuery();
 
@@ -32,23 +31,22 @@ namespace APIPet.Repositories
             return pet;
         }
 
-        public TipoPet BuscarPorID(int id)
+        public Raca BuscarPorID(int id)
         {
             cmd.Connection = conexao.Conectar();
 
-            cmd.CommandText = "SELECT * FROM TipoPet WHERE IdTipoPet = @id";
+            cmd.CommandText = "SELECT * FROM Raca WHERE IdRaca = @id";
             cmd.Parameters.AddWithValue("@id", id);
 
             SqlDataReader dados = cmd.ExecuteReader();
 
-            TipoPet pet = new TipoPet();
+            Raca pet = new Raca();
 
             while (dados.Read())
             {
 
-                pet.IdTipoPet = Convert.ToInt32(dados.GetValue(0));
+                pet.IdRaca = Convert.ToInt32(dados.GetValue(0));
                 pet.Descricao = dados.GetValue(1).ToString();
-                pet.DataDeNascimento = Convert.ToDateTime(dados.GetValue(2));
             }
 
             conexao.Desconectar();
@@ -56,16 +54,15 @@ namespace APIPet.Repositories
             return pet;
         }
 
-        public TipoPet Cadastrar(TipoPet pet)
+        public Raca Cadastrar(Raca pet)
         {
             cmd.Connection = conexao.Conectar();
 
             cmd.CommandText =
-                "INSERT INTO TipoPet (Descricao, DataDeNascimento) " +
+                "INSERT INTO Raca (Descricao) " +
                 "VALUES" +
-                "(@Descricao, @DataDeNascimento)";
+                "(@Descricao)";
             cmd.Parameters.AddWithValue("@Descricao", pet.Descricao);
-            cmd.Parameters.AddWithValue("@DataDeNascimento", pet.DataDeNascimento);
 
             cmd.ExecuteNonQuery();
 
@@ -78,7 +75,7 @@ namespace APIPet.Repositories
         {
             cmd.Connection = conexao.Conectar();
 
-            cmd.CommandText = "DELETE FROM Aluno WHERE IdTipoPet = @id";
+            cmd.CommandText = "DELETE FROM Aluno WHERE IdRaca = @id";
             cmd.Parameters.AddWithValue("@id", id);
 
             cmd.ExecuteNonQuery();
@@ -86,24 +83,23 @@ namespace APIPet.Repositories
             conexao.Desconectar();
         }
 
-        public List<TipoPet> ListarTodos()
+        public List<Raca> ListarTodos()
         {
             cmd.Connection = conexao.Conectar();
 
-            cmd.CommandText = "SELECT * FROM TipoPet";
+            cmd.CommandText = "SELECT * FROM Raca";
 
             SqlDataReader dados = cmd.ExecuteReader();
 
-            List<TipoPet> pets = new List<TipoPet>();
+            List<Raca> pets = new List<Raca>();
 
             while (dados.Read())
             {
                 pets.Add(
-                    new TipoPet()
+                    new Raca()
                     {
-                        IdTipoPet = Convert.ToInt32(dados.GetValue(0)),
+                        IdRaca = Convert.ToInt32(dados.GetValue(0)),
                         Descricao = dados.GetValue(1).ToString(),
-                        DataDeNascimento = Convert.ToDateTime(dados.GetValue(2)),
                     }
                 );
             }

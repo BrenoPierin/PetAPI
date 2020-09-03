@@ -7,5 +7,7 @@ namespace APIPet.Domains
 {
     public class Raca
     {
+        public int IdRaca { get; set; }
+        public string Descricao { get; set; }
     }
 }
